@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const Xvfb = require('xvfb');
-const fs = require('fs').promises;
+const fs = require('fs');
 var width = 1280;
 var height = 720;
 var xvfb = new Xvfb({silent: true, xvfb_args: ["-screen", "0", `${ width }x${ height }x24`, "-ac"],});
@@ -76,9 +76,9 @@ async function main() {
     const pages = await browser.pages()
     const page = pages[0]
     if (cookies) {
-        const cookiesString = await fs.readFile(cookies);
+        const cookiesString = fs.readFileSync(cookies);
+        // console.log(cookiesString.toString())
         const cookiesJSONString = extractCookies(cookiesString.toString())
-        console.log(cookiesString)
         await page.setCookie(...cookiesJSONString);
     }
     await page._client.send('Emulation.clearDeviceMetricsOverride');

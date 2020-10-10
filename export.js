@@ -8,6 +8,9 @@ var options = {
     headless: false,
     args: [
         '--enable-usermedia-screen-capturing',
+        '--allow-running-insecure-content',
+        '--disable-web-security',
+        '--ignore-certificate-errors',
         '--allow-http-screen-capture',
         '--auto-select-desktop-capture-source=puppetcam',
         '--load-extension=' + __dirname,

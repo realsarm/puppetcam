@@ -77,7 +77,7 @@ async function main() {
     const page = pages[0]
     if (cookies) {
         const cookiesString = await fs.readFile(cookies);
-        const cookiesJSONString = extractCookies(cookiesString)
+        const cookiesJSONString = extractCookies(cookiesString.toString())
         console.log(cookiesString)
         await page.setCookie(...cookiesJSONString);
     }
